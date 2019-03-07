@@ -11,6 +11,7 @@ public class n3kHitBoxTutAttempt01 : MonoBehaviour
 {
 
     public Collider[] attackHitboxes;
+    public Transform shotSpawn;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,10 @@ public class n3kHitBoxTutAttempt01 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G))
         {
             LaunchAttack(attackHitboxes[0]);
+        }
+
+        if (Input.GetKeyDown("space")) {
+            LaunchShortRanged(attackHitboxes[1]);
         }
     }
     private void LaunchAttack(Collider col)
@@ -41,16 +46,48 @@ public class n3kHitBoxTutAttempt01 : MonoBehaviour
                 case "Head":
                 damage = 30;
                 Debug.Log(c.name);
+                Debug.Log(damage);
                 break;
+
                 case "Torso":
                 damage = 10;
                 Debug.Log(c.name);
+                Debug.Log(damage);
                 break;
+
                 default:
-                Debug.Log("Unable to identify body part, make sure the name matces the switch case");
+                Debug.Log("Unable to identify body part, make sure the name mathces the switch case");
                 break;
             }
             
+        }
+    }
+
+    private void LaunchShortRanged(Collider col) {
+        Instantiate(attackHitboxes[1], shotSpawn.position, shotSpawn.rotation);
+        Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hitbox"));
+
+        foreach (Collider c in cols) {
+            if (c.transform.parent.parent == transform) {
+
+                continue;
+
+            }
+
+            float damage = 0;
+
+            switch (c.name) {
+                case "BlueEnemy":
+                    damage = 10;
+                    Debug.Log(c.name);
+                    Debug.Log(damage);
+                    break;
+
+                default:
+                    Debug.Log("Unable to identify enemy. Make sure name matches switch case.");
+                    break; 
+
+            }
         }
     }
 }
