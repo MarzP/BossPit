@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -147,7 +147,8 @@ MonoBehaviour:
     type: 3}
   mazeSpawn: {fileID: 59549553}
   floorMaterial: {fileID: 2100000, guid: 975809d64335c0b4c8cf9484489a5bc2, type: 2}
-  wallMaterial: {fileID: 2100000, guid: f0c387d67d4c59049adb812697052f31, type: 2}
+  innerWallMaterial: {fileID: 2100000, guid: f0c387d67d4c59049adb812697052f31, type: 2}
+  outerWallMaterial: {fileID: 2100000, guid: b19ae6a546d638944b7c804498af613c, type: 2}
   gridSizeX: 0
   gridSizeY: 0
   xScale: 10
@@ -392,7 +393,10 @@ MonoBehaviour:
   mazeSpawn: {fileID: 59549553}
   enemeyPrefab: {fileID: 4589461220869556799, guid: 9b307f40019c9224ab653755b869b46b,
     type: 3}
+  wallDescentRate: 0.025
+  wallShakeAmount: 0.01
   desiredEnemies: 5
+  diffcultyLevel: 0
 --- !u!4 &761607018
 Transform:
   m_ObjectHideFlags: 0

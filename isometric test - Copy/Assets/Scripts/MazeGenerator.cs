@@ -6,7 +6,7 @@ public class MazeGenerator: MonoBehaviour {
     // Variables for generating the maze
     public GameObject wallPrefab, floorPrefab;
     public Transform mazeSpawn;
-    public Material floorMaterial, wallMaterial;
+    public Material floorMaterial, innerWallMaterial, outerWallMaterial;
 
     // holds the maze size
     public int gridSizeX;
@@ -16,6 +16,9 @@ public class MazeGenerator: MonoBehaviour {
     public float xScale = 10;
     public float yScale = 4;
     public float zScale = 10;
+
+    //Stores direction to define wall placements
+    public enum Direction {North, East, South, West};
 
     // an array to store info about each cell in the maze
     GridSpace[,] spaces;
@@ -29,7 +32,9 @@ public class MazeGenerator: MonoBehaviour {
     //List of the corners of the maze to later spawn a marble in
     List<Vector2> corners = new List<Vector2>();
 
-
+    //List of inner Walls
+    List<GameObject> innerWalls = new List<GameObject>();
+    //Governs generating the maze
     public void GenerateMaze(int sizeX, int sizeY) {
         //Strategy
         //Choose a cell at random and place it in the maze
@@ -79,6 +84,7 @@ public class MazeGenerator: MonoBehaviour {
 
     }
 
+    //Connects a cell to the maze by searching for a neighbor in the maze
     void ConnectToMaze(Vector2 cell) {
         //Make a list of potential neighbors
         List<Vector2> neighbors = new List<Vector2>
@@ -129,6 +135,7 @@ public class MazeGenerator: MonoBehaviour {
         }
     }
 
+    //Adds Approriate neighbors of specified Cell to the maze Generation Frontier
     void AddFrontier(Vector2 cell) {
         //check to see if its neighbors are in the maze or already in the frontier, if neither add them to the frontier
         // also check boundry conditions
@@ -149,7 +156,7 @@ public class MazeGenerator: MonoBehaviour {
     }
 
 
-
+    //Fills out the gridspace array
     void FillSpaces() {
         // Loop the array, adding a space variable
         for (int x = 0; x < gridSizeX; x++) {
@@ -160,6 +167,7 @@ public class MazeGenerator: MonoBehaviour {
         }
     }
 
+    //Instantiates the Maze
     public void InstantiateMaze() {
         //Move the maze spawn so the rotation point will be about it's center later
         mazeSpawn.transform.localPosition = new Vector3(-(gridSizeX / 2), 0, -(gridSizeY / 2));
@@ -171,20 +179,36 @@ public class MazeGenerator: MonoBehaviour {
 
             //Instantiate walls
             if (s.northWall) {
-                GameObject northWall = Object.Instantiate(wallPrefab, Vector3.zero, Quaternion.identity);
-                northWall.transform.SetParent(mazeSpawn);
-                northWall.transform.localPosition = new Vector3(s.gridPos.x, 1.9f, s.gridPos.y + 0.45f);
-                northWall.GetComponent<MeshRenderer>().material = wallMaterial;
-                northWall.transform.rotation = Quaternion.Euler(0, 90, 0);
-                walls++;
+                GameObject northWall = Object.Instantiate(wallPrefab, Vector3.zero, Quaternion.identity); //Instanstiate a wall prefab
+                northWall.transform.SetParent(mazeSpawn); //Set as child of the MazeSpawn object
+                northWall.transform.rotation = Quaternion.Euler(0, 90, 0); //Specific rotation for north walls
+                northWall.transform.localPosition = new Vector3(s.gridPos.x, 1.9f, s.gridPos.y + 0.5f); //Specifc location adjustment for north walls
+                //Check if the wall is an outer wall
+                //Outer walls get a different material and are slightly larger
+                if (outerWallDetection(s.gridPos, Direction.North)) {
+                    northWall.GetComponent<MeshRenderer>().material = outerWallMaterial; //Outer wall material
+                    Vector3 Scale = northWall.transform.localScale; //Get the current scale
+                    northWall.transform.localScale = new Vector3(Scale.x * 1.25f, Scale.y*1.01f, Scale.z); //Make it slightly larger
+                } else {
+                    northWall.GetComponent<MeshRenderer>().material = innerWallMaterial; // Inner wall Material
+                    innerWalls.Add(northWall);
+                }
+                walls++; //Increase count of instantiated walls
             }
 
             if (s.southWall) {
                 GameObject southWall = Object.Instantiate(wallPrefab, Vector3.zero, Quaternion.identity);
                 southWall.transform.SetParent(mazeSpawn);
                 southWall.transform.localPosition = new Vector3(s.gridPos.x, 1.9f, s.gridPos.y - 0.45f);
-                southWall.GetComponent<MeshRenderer>().material = wallMaterial;
                 southWall.transform.rotation = Quaternion.Euler(0, 90, 0);
+                if (outerWallDetection(s.gridPos, Direction.South)) {
+                    southWall.GetComponent<MeshRenderer>().material = outerWallMaterial;
+                    Vector3 Scale = southWall.transform.localScale; 
+                    southWall.transform.localScale = new Vector3(Scale.x * 1.25f, Scale.y * 1.01f, Scale.z); 
+                } else {
+                    southWall.GetComponent<MeshRenderer>().material = innerWallMaterial;
+                    innerWalls.Add(southWall);
+                }
                 walls++;
             }
 
@@ -192,8 +216,15 @@ public class MazeGenerator: MonoBehaviour {
                 GameObject eastWall = Object.Instantiate(wallPrefab, Vector3.zero, Quaternion.identity);
                 eastWall.transform.SetParent(mazeSpawn);
                 eastWall.transform.localPosition = new Vector3(s.gridPos.x + 0.45f, 1.9f, s.gridPos.y);
-                eastWall.GetComponent<MeshRenderer>().material = wallMaterial;
                 eastWall.transform.rotation = Quaternion.Euler(0, 0, 0);
+                if (outerWallDetection(s.gridPos, Direction.East)) {
+                    eastWall.GetComponent<MeshRenderer>().material = outerWallMaterial;
+                    Vector3 Scale = eastWall.transform.localScale; 
+                    eastWall.transform.localScale = new Vector3(Scale.x * 1.25f, Scale.y * 1.01f, Scale.z); 
+                } else {
+                    eastWall.GetComponent<MeshRenderer>().material = innerWallMaterial;
+                    innerWalls.Add(eastWall);
+                }
                 walls++;
             }
 
@@ -201,11 +232,19 @@ public class MazeGenerator: MonoBehaviour {
                 GameObject westWall = Object.Instantiate(wallPrefab, Vector3.zero, Quaternion.identity);
                 westWall.transform.SetParent(mazeSpawn);
                 westWall.transform.localPosition = new Vector3(s.gridPos.x - 0.45f, 1.9f, s.gridPos.y);
-                westWall.GetComponent<MeshRenderer>().material = wallMaterial;
                 westWall.transform.rotation = Quaternion.Euler(0, 0, 0);
+                if(outerWallDetection(s.gridPos, Direction.West)) {
+                     westWall.GetComponent<MeshRenderer>().material = outerWallMaterial;
+                    Vector3 Scale = westWall.transform.localScale; //Get the current scale
+                    westWall.transform.localScale = new Vector3(Scale.x * 1.25f, Scale.y * 1.01f, Scale.z); //Make it slightly larger
+                } else {
+                    westWall.GetComponent<MeshRenderer>().material = innerWallMaterial;
+                    innerWalls.Add(westWall);
+                }
                 walls++;
             }
 
+            //Sum instantiated walls, if its 3 or more it's a dead end (if it's 4 something went wrong)
             if(walls >= 3) {
                 s.SetAsDeadEnd();
             }
@@ -220,6 +259,7 @@ public class MazeGenerator: MonoBehaviour {
         mazeSpawn.transform.localScale = new Vector3(xScale, yScale, zScale);
     }
 
+    //Returns a list of the location of all dead ends in maze
     public List<Vector2> getDeadEndList() {
         List<Vector2> deadEnds = new List<Vector2>();
         foreach(GridSpace s in spaces) {
@@ -228,6 +268,37 @@ public class MazeGenerator: MonoBehaviour {
             }
         }
         return deadEnds;
+    }
+
+    //Returns a list of all innerWalls
+    public List<GameObject> getInnerWalls() {
+        return innerWalls;
+    }
+    //returns true if the wall specified is an outer wall
+    public bool outerWallDetection(Vector2 position, Direction dir) {
+        //Decode the direction
+        if (dir == Direction.North) {
+            //North walls are outer walls if the grid y is on the top row
+            if (position.y== gridSizeY -1) {
+                return true;
+            }
+        } else if (dir == Direction.South) {
+            //south walls are outer walls if the grid y is zero
+            if (position.y == 0) {
+                return true;
+            }
+        } else if (dir == Direction.East) {
+            //east walls are outer walls if the grid x is Max Size -1
+            if (position.x == gridSizeX -1) {
+                return true;
+            }
+        } else {
+            //west walls are outer walls if the grid x is zero
+            if (position.x == 0) {
+                return true;
+            }
+        }
+        return false;
     }
     // end of class
 }
