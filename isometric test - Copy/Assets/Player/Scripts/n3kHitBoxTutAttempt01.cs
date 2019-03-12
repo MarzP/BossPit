@@ -12,11 +12,17 @@ public class n3kHitBoxTutAttempt01 : MonoBehaviour
 
     public Collider[] attackHitboxes;
     public Transform shotSpawn;
+    public float fireRate;
+    public charController charaController;
+    public float speedBack;
+    public Transform playerTransform;
+
+    private float nextFire;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -27,8 +33,12 @@ public class n3kHitBoxTutAttempt01 : MonoBehaviour
             LaunchAttack(attackHitboxes[0]);
         }
 
-        if (Input.GetKeyDown("space")) {
+        if (Input.GetKeyDown("space") && Time.time > nextFire) {
+            Vector3 tempPosition = playerTransform.position;
+            playerTransform.position = tempPosition;
+            nextFire = Time.time + fireRate;
             LaunchShortRanged(attackHitboxes[1]);
+            
         }
     }
     private void LaunchAttack(Collider col)
@@ -77,7 +87,7 @@ public class n3kHitBoxTutAttempt01 : MonoBehaviour
             float damage = 0;
 
             switch (c.name) {
-                case "BlueEnemy":
+                case "enemy":
                     damage = 10;
                     Debug.Log(c.name);
                     Debug.Log(damage);

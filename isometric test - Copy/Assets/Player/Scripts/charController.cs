@@ -6,7 +6,9 @@ public class charController : MonoBehaviour
 {
 
     [SerializeField]
-    float moveSpeed = 4f;
+    public float moveSpeed = 4f;
+    float playerHealth = 100;
+    GameController gameController;
 
     Vector3 forward, right;
 
@@ -28,6 +30,9 @@ public class charController : MonoBehaviour
         {
             Move();
         }
+        if (playerHealth <= 0) {
+            //gameController.playerDeath();
+        }
     }
 
     void Move() {
@@ -40,5 +45,14 @@ public class charController : MonoBehaviour
         transform.forward = heading;
         transform.position += rightMovement;
         transform.position += upMovement;
+
     }
+    public void TakeDamage(float damage) {
+        if (playerHealth > 0)
+        {
+            playerHealth -= damage;
+        }
+    }
+
 }
+
