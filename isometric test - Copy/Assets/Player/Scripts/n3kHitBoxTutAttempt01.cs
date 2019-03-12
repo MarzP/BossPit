@@ -19,10 +19,11 @@ public class n3kHitBoxTutAttempt01 : MonoBehaviour
 
     private float nextFire;
 
+
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -32,14 +33,15 @@ public class n3kHitBoxTutAttempt01 : MonoBehaviour
         {
             LaunchAttack(attackHitboxes[0]);
         }
-
-        if (Input.GetKeyDown("space") && Time.time > nextFire) {
+        if (Input.GetKeyDown("space") && Time.time > nextFire)
+        {
             Vector3 tempPosition = playerTransform.position;
             playerTransform.position = tempPosition;
             nextFire = Time.time + fireRate;
             LaunchShortRanged(attackHitboxes[1]);
-            
+
         }
+
     }
     private void LaunchAttack(Collider col)
     {
@@ -56,29 +58,27 @@ public class n3kHitBoxTutAttempt01 : MonoBehaviour
                 case "Head":
                 damage = 30;
                 Debug.Log(c.name);
-                Debug.Log(damage);
                 break;
-
                 case "Torso":
                 damage = 10;
                 Debug.Log(c.name);
-                Debug.Log(damage);
                 break;
-
                 default:
-                Debug.Log("Unable to identify body part, make sure the name mathces the switch case");
+                Debug.Log("Unable to identify body part, make sure the name matces the switch case");
                 break;
             }
             
         }
     }
-
-    private void LaunchShortRanged(Collider col) {
+    private void LaunchShortRanged(Collider col)
+    {
         Instantiate(attackHitboxes[1], shotSpawn.position, shotSpawn.rotation);
         Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hitbox"));
 
-        foreach (Collider c in cols) {
-            if (c.transform.parent.parent == transform) {
+        foreach (Collider c in cols)
+        {
+            if (c.transform.parent.parent == transform)
+            {
 
                 continue;
 
@@ -86,7 +86,8 @@ public class n3kHitBoxTutAttempt01 : MonoBehaviour
 
             float damage = 0;
 
-            switch (c.name) {
+            switch (c.name)
+            {
                 case "enemy":
                     damage = 10;
                     Debug.Log(c.name);
@@ -95,9 +96,10 @@ public class n3kHitBoxTutAttempt01 : MonoBehaviour
 
                 default:
                     Debug.Log("Unable to identify enemy. Make sure name matches switch case.");
-                    break; 
+                    break;
 
             }
         }
     }
 }
+

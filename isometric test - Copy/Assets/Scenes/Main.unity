@@ -391,8 +391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mazeGenerator: {fileID: 59549552}
   mazeSpawn: {fileID: 59549553}
-  enemeyPrefab: {fileID: 4589461220869556799, guid: 9b307f40019c9224ab653755b869b46b,
-    type: 3}
+  enemeyPrefab: {fileID: 249308947, guid: a416fd8cac1bfc741af9dff49487af12, type: 3}
   wallDescentRate: 0.025
   wallShakeAmount: 0.01
   desiredEnemies: 5
@@ -502,12 +501,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 512e65702a4f6c140900e3e607f2bf7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &1149073208 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 1884460710054704485, guid: f918157bced4bd64bbafcc39def29fef,
-    type: 3}
-  m_PrefabInstance: {fileID: 1884460711220178889}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1518918320 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1884460710054704505, guid: f918157bced4bd64bbafcc39def29fef,
@@ -897,6 +890,12 @@ MonoBehaviour:
   PlayerTransform: {fileID: 1518918320}
   LookAtPlayer: 0
   SmoothFactor: 1
+--- !u!4 &1934089497 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1884460711806296673, guid: f918157bced4bd64bbafcc39def29fef,
+    type: 3}
+  m_PrefabInstance: {fileID: 1884460711220178889}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1956916635
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,26 +1085,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1884460710054704485, guid: f918157bced4bd64bbafcc39def29fef,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 64
-      objectReference: {fileID: 0}
     - target: {fileID: 1884460710054704507, guid: f918157bced4bd64bbafcc39def29fef,
         type: 3}
-      propertyPath: nextFire
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: shotSpawn
+      value: 
+      objectReference: {fileID: 1934089497}
     - target: {fileID: 1884460710054704507, guid: f918157bced4bd64bbafcc39def29fef,
         type: 3}
       propertyPath: fireRate
-      value: 0.4
+      value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1884460710054704507, guid: f918157bced4bd64bbafcc39def29fef,
-        type: 3}
-      propertyPath: charController
-      value: 
-      objectReference: {fileID: 1149073206}
     - target: {fileID: 1884460710054704507, guid: f918157bced4bd64bbafcc39def29fef,
         type: 3}
       propertyPath: charaController
@@ -1114,22 +1103,12 @@ PrefabInstance:
     - target: {fileID: 1884460710054704507, guid: f918157bced4bd64bbafcc39def29fef,
         type: 3}
       propertyPath: speedBack
-      value: 20
+      value: 0.2
       objectReference: {fileID: 0}
-    - target: {fileID: 1884460710054704507, guid: f918157bced4bd64bbafcc39def29fef,
-        type: 3}
-      propertyPath: playerRigidBody
-      value: 
-      objectReference: {fileID: 1149073208}
     - target: {fileID: 1884460710054704507, guid: f918157bced4bd64bbafcc39def29fef,
         type: 3}
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 1518918320}
-    - target: {fileID: 1884460711888862848, guid: f918157bced4bd64bbafcc39def29fef,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f918157bced4bd64bbafcc39def29fef, type: 3}

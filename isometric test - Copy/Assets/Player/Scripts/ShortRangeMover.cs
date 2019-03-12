@@ -30,7 +30,7 @@ public class ShortRangeMover : MonoBehaviour
 
     void OnCollisionEnter(Collision other) {
         if (other.gameObject.tag == "Enemy") {
-            other.gameObject.GetComponent<Target>().TakeDamage(damage);
+            other.gameObject.GetComponent<TankHealth>().TakeDamage(50);
         }
     }
 }

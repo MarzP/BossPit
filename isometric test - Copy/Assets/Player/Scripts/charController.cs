@@ -6,9 +6,7 @@ public class charController : MonoBehaviour
 {
 
     [SerializeField]
-    public float moveSpeed = 4f;
-    float playerHealth = 100;
-    GameController gameController;
+    float moveSpeed = 4f;
 
     Vector3 forward, right;
 
@@ -25,13 +23,9 @@ public class charController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (Input.anyKey)
-        if(Input.GetButton("HorizontalKey") || Input.GetButton("VerticalKey"))
+        if (Input.anyKey)
         {
             Move();
-        }
-        if (playerHealth <= 0) {
-            //gameController.playerDeath();
         }
     }
 
@@ -45,14 +39,5 @@ public class charController : MonoBehaviour
         transform.forward = heading;
         transform.position += rightMovement;
         transform.position += upMovement;
-
     }
-    public void TakeDamage(float damage) {
-        if (playerHealth > 0)
-        {
-            playerHealth -= damage;
-        }
-    }
-
 }
-
