@@ -144,5 +144,11 @@ public class GameController : MonoBehaviour {
             }
         }
     }
+
+    //Call This function when the player has died
+    public void RegiesterPlayerDeath() {
+        DiffcultyLevel.diffcultyLevel = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
     // End of Game Controller Class
 }

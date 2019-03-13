@@ -275,8 +275,8 @@ MonoBehaviour:
   wallDescentRate: 0.025
   wallShakeAmount: 0.01
   wallDescentTime: 2.5
-  currentDiffcultyLevel: 0
-  minEnemyCount: 1
+  currentDiffcultyLevel: 1
+  minEnemyCount: 3
 --- !u!4 &761607018
 Transform:
   m_ObjectHideFlags: 0
