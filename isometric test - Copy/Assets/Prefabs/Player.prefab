@@ -104,7 +104,6 @@ GameObject:
   - component: {fileID: 1884460710054704487}
   - component: {fileID: 1884460710054704484}
   - component: {fileID: 1884460710054704485}
-  - component: {fileID: 1884460710054704504}
   - component: {fileID: 1884460710054704482}
   - component: {fileID: 1884460710054704507}
   m_Layer: 9
@@ -204,24 +203,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 64
   m_CollisionDetection: 0
---- !u!114 &1884460710054704504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1884460710054704483}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a82752bc835c42045a1b76bd29daa214, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fpsCam: {fileID: 0}
-  range: 100
-  myLayerMask:
-    serializedVersion: 2
-    m_Bits: 1335
-  damage: 50
 --- !u!114 &1884460710054704482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,6 +231,11 @@ MonoBehaviour:
   attackHitboxes:
   - {fileID: 1884460709937319613}
   - {fileID: 2041708914255518610, guid: c414f397c45b0ae4ba1700b0375fd7a0, type: 3}
+  shotSpawn: {fileID: 1884460711806296673}
+  fireRate: 0.5
+  charaController: {fileID: 1884460710054704482}
+  speedBack: 0.2
+  playerTransform: {fileID: 1884460710054704505}
 --- !u!1 &1884460710056187328
 GameObject:
   m_ObjectHideFlags: 0

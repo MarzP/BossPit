@@ -4594,7 +4594,7 @@ ParticleSystem:
 --- !u!199 &23474476
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -5112,11 +5112,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectRange: 30
-  attackSpeed: 100
+  attackSpeed: 3
   shell: {fileID: 5409530, guid: 008ecb1b70bec724fa2cd34255b0d8f8, type: 3}
   shellSpawnHeight: 20
   launchForce: 1000
   engineIdle: {fileID: 249308952}
+  nextActionTime: 0
 --- !u!1 &307349038
 GameObject:
   m_ObjectHideFlags: 0
@@ -9711,7 +9712,7 @@ ParticleSystem:
 --- !u!199 &307349040
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}

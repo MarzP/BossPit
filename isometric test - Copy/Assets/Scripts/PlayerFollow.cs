@@ -5,9 +5,8 @@ using UnityEngine;
 public class PlayerFollow : MonoBehaviour
 {
     public Transform PlayerTransform;
-
-    private Vector3 _cameraOffset;
-
+    public GameController gameController;
+    public Vector3 cameraOffset;
     public bool LookAtPlayer = false;
 
     [Range(0.01f, 1.0f)]
@@ -15,13 +14,13 @@ public class PlayerFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _cameraOffset = transform.position - PlayerTransform.position;
+       PlayerTransform = gameController.getPlayerTransform();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 newPos = PlayerTransform.position + _cameraOffset;
+        Vector3 newPos = PlayerTransform.position + cameraOffset;
 
         transform.position = Vector3.Slerp(transform.position, newPos, SmoothFactor);
 

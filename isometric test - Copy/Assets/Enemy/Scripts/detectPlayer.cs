@@ -10,7 +10,6 @@ public class detectPlayer : MonoBehaviour
 	public float detectRange = 10.0f;
 	//Execute attack every x secounds
 	public float attackSpeed = 1f;
-
 	//the attack object
 	public Rigidbody shell;
 
@@ -21,7 +20,7 @@ public class detectPlayer : MonoBehaviour
 
 	private Rigidbody rb;
 	private RaycastHit hit;
-	private float nextActionTime = 0.0f;
+	public float nextActionTime = 0.0f;
 
 	private void Start()
 	{
@@ -35,8 +34,9 @@ public class detectPlayer : MonoBehaviour
 
 	void Update()
 	{
-		//Calculate distance between player
-		float distance = Vector3.Distance(transform.position, player.position);
+        nextActionTime += Time.deltaTime;
+        //Calculate distance between player
+        float distance = Vector3.Distance(transform.position, player.position);
 
 		//Get a vector3 in direction from enemy to player
 		Vector3 rayDirection = player.transform.position - transform.position;
@@ -61,18 +61,18 @@ public class detectPlayer : MonoBehaviour
 				//If player is in line of sight
 				if (hit.transform == player)
 				{
-					Debug.Log("Player in LOS!");
+					//Debug.Log("Player in LOS!");
 					//Execute every x secounds while player is in LOS
-					if (Time.time > nextActionTime)
+					if (nextActionTime > attackSpeed)
 					{
-						nextActionTime = Time.time + attackSpeed;
 						FireAttack();
-					}
-				}
+                        nextActionTime = 0.0f;
+                    }
+                }
 				//If player is not in line of sight
 				else
 				{
-					Debug.Log("Cant see the player!");
+					//Debug.Log("Cant see the player!");
 				}
 			}
 

@@ -10,8 +10,7 @@ using UnityEngine.UI;
         public Color m_FullHealthColor = Color.green;       // The color the health bar will be when on full health.
         public Color m_ZeroHealthColor = Color.red;         // The color the health bar will be when on no health.
         public GameObject m_ExplosionPrefab;                // A prefab that will be instantiated in Awake, then used whenever the tank dies.
-        
-        
+        public GameController gameController;               // Holds a Reference to the gameController
         private AudioSource m_ExplosionAudio;               // The audio source to play when the tank explodes.
         private ParticleSystem m_ExplosionParticles;        // The particle system the will play when the tank is destroyed.
         private float m_CurrentHealth;                      // How much health the tank currently has.
@@ -74,8 +73,11 @@ using UnityEngine.UI;
             // Set the flag so that this function is only called once.
             m_Dead = true;
 
+        //Get a reference to gameController and tell it this tank has been destroyed
+        gameController.RegisterEnemyDeath(this.gameObject);
+
             // Move the instantiated explosion prefab to the tank's position and turn it on.
-            m_ExplosionParticles.transform.position = transform.position;
+        m_ExplosionParticles.transform.position = transform.position;
             m_ExplosionParticles.gameObject.SetActive (true);
 
             // Play the particle system of the tank exploding.
