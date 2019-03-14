@@ -76,6 +76,12 @@ public class GameController : MonoBehaviour {
             SpawnBoss();
             bossSpawned = true;
         }
+        if (getPlayerHP() <= 0) {
+            RegiesterPlayerDeath();
+            Debug.Log("Player Died");
+
+        }
+     
     }
     //function to spawn in the player
     void SpawnPlayer() {
@@ -123,6 +129,7 @@ public class GameController : MonoBehaviour {
 
         //Spawn the actual boss
         GameObject boss = Object.Instantiate(enemeyPrefab, Vector3.zero, Quaternion.identity);
+        boss.transform.localScale = new Vector3(2, 2, 2);
         boss.transform.localPosition = spawn.transform.position; //use the empty game object position
         boss.GetComponent<TankHealth>().gameController = this; //Pass a reference to the boss health script
     }
@@ -145,6 +152,10 @@ public class GameController : MonoBehaviour {
         }
     }
 
+    public float getPlayerHP() {
+        float playerHP = player.GetComponent<charController>().playerCurrentHealth;
+        return playerHP;
+    }
     //Call This function when the player has died
     public void RegiesterPlayerDeath() {
         DiffcultyLevel.diffcultyLevel = 1;
