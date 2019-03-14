@@ -1,4 +1,8 @@
 # BossPit
+
+Release v1.0
+https://github.com/MarzP/BossPit/releases/tag/v1.0
+
 Trello Link
 https://trello.com/b/d1uoRqwt/bosspit
 
