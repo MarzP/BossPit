@@ -9,7 +9,7 @@ public class detectPlayer : MonoBehaviour
 	//At what distance will the enemy be able to detect the player?
 	public float detectRange = 10.0f;
 	//Execute attack every x secounds
-	public float attackSpeed = 1f;
+	public float attackSpeed;
 	//the attack object
 	public Rigidbody shell;
 

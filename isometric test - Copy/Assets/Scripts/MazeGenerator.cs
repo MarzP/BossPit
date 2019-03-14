@@ -272,7 +272,7 @@ public class MazeGenerator: MonoBehaviour {
 
     //returns position of center of maze
     public Vector2 getMazeCenter() {
-        return spaces[(int)gridSizeX / 2, (int)gridSizeY / 2].gridPos;
+        return spaces[(int)(gridSizeX / 2), (int)(gridSizeY / 2)].gridPos;
     }
     //Returns a list of all innerWalls
     public List<GameObject> getInnerWalls() {
