@@ -76,6 +76,12 @@ public class GameController : MonoBehaviour {
             SpawnBoss();
             bossSpawned = true;
         }
+        if (getPlayerHP() <= 0) {
+            RegiesterPlayerDeath();
+            Debug.Log("Player Died");
+
+        }
+     
     }
     //function to spawn in the player
     void SpawnPlayer() {
@@ -145,6 +151,10 @@ public class GameController : MonoBehaviour {
         }
     }
 
+    public float getPlayerHP() {
+        float playerHP = player.GetComponent<charController>().playerCurrentHealth;
+        return playerHP;
+    }
     //Call This function when the player has died
     public void RegiesterPlayerDeath() {
         DiffcultyLevel.diffcultyLevel = 1;

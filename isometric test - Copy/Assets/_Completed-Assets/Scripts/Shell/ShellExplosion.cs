@@ -45,8 +45,14 @@ namespace Complete
                 // Add an explosion force.
                 targetRigidbody.AddExplosionForce (m_ExplosionForce, transform.position, m_ExplosionRadius);
 
+                if (other.gameObject.tag == "Player")
+                {
+                    float damage = CalculateDamage(targetRigidbody.position);
 
-				/* //TODO!!!
+                    other.gameObject.GetComponent<charController>().TakeDamage(damage);
+                }
+
+                /* //TODO!!!
                 // Find the TankHealth script associated with the rigidbody.
                 TankHealth targetHealth = targetRigidbody.GetComponent<TankHealth> ();
 
@@ -60,6 +66,7 @@ namespace Complete
                 // Deal this damage to the tank.
                 targetHealth.TakeDamage (damage);
 				*/
+
             }
 
             // Unparent the particles from the shell.
