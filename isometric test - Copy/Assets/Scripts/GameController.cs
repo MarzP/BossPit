@@ -129,6 +129,7 @@ public class GameController : MonoBehaviour {
 
         //Spawn the actual boss
         GameObject boss = Object.Instantiate(enemeyPrefab, Vector3.zero, Quaternion.identity);
+        boss.transform.localScale = new Vector3(2, 2, 2);
         boss.transform.localPosition = spawn.transform.position; //use the empty game object position
         boss.GetComponent<TankHealth>().gameController = this; //Pass a reference to the boss health script
     }
