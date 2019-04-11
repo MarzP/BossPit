@@ -242,6 +242,8 @@ MonoBehaviour:
   charaController: {fileID: 1884460710054704482}
   speedBack: 0.2
   playerTransform: {fileID: 1884460710054704505}
+  lightning: {fileID: 9026105365088882857, guid: f8e688cd35c5d5a4e9904408af98b743,
+    type: 3}
 --- !u!1 &1884460710056187328
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,6 +16,7 @@ public class n3kHitBoxTutAttempt01 : MonoBehaviour
     public charController charaController;
     public float speedBack;
     public Transform playerTransform;
+    public ParticleSystem lightning;
 
     private float nextFire;
 
@@ -73,6 +74,8 @@ public class n3kHitBoxTutAttempt01 : MonoBehaviour
     private void LaunchShortRanged(Collider col)
     {
         Instantiate(attackHitboxes[1], shotSpawn.position, shotSpawn.rotation);
+        Instantiate(lightning, transform.position, transform.rotation);
+        lightning.transform.parent = this.transform;
         Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hitbox"));
 
         foreach (Collider c in cols)
