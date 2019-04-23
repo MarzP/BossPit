@@ -237,6 +237,7 @@ MonoBehaviour:
   attackHitboxes:
   - {fileID: 1884460709937319613}
   - {fileID: 2041708914255518610, guid: c414f397c45b0ae4ba1700b0375fd7a0, type: 3}
+  - {fileID: 2041708914255518610, guid: c414f397c45b0ae4ba1700b0375fd7a0, type: 3}
   shotSpawn: {fileID: 1884460711806296673}
   fireRate: 0.5
   charaController: {fileID: 1884460710054704482}

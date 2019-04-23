@@ -104,5 +104,9 @@ public class n3kHitBoxTutAttempt01 : MonoBehaviour
             }
         }
     }
+
+    private void LaunchBigAttack(Collider col) {
+
+    }
 }
 
