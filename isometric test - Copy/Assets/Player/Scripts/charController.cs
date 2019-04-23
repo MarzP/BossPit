@@ -10,12 +10,14 @@ public class charController : MonoBehaviour
 
     public Transform playerTransform;
     public GameObject gameController;
-    public float dashDistance;
+    public float maxDashDistance;
     public float dashRate;
     public float playerCurrentHealth;
     Vector3 forward, right;
 
     private float nextDash;
+
+    RaycastHit hit;
 
 
     // Start is called before the first frame update
@@ -25,6 +27,7 @@ public class charController : MonoBehaviour
         forward.y = 0;
         forward = Vector3.Normalize(forward);
         right = Quaternion.Euler(new Vector3(0, 90, 0)) * forward;
+        
 
     }
 
@@ -57,7 +60,20 @@ public class charController : MonoBehaviour
     }
     void Dash()
     {
+        float dashDistance = maxDashDistance;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, maxDashDistance)) {
+
+            Debug.Log("Flag");
+            dashDistance = hit.distance;
+
+        }
+        
+
         playerTransform.transform.position += playerTransform.transform.forward * dashDistance;
+        Debug.Log("Flag");
+        Debug.Log("dash distance: " + dashDistance);
+        //playerTransform.transform.position = playerTransform.transform.position + (playerTransform.transform.forward * dashDistance);
+        //playerTransform.transform.position += playerTransform.transform.forward * maxDashDistance;
         //I should probably make the teleporting better to look at on the camera...
         //it should also raycast so you cant teleport through walls
         //maybe even a cooldown

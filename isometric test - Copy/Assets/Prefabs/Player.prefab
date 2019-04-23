@@ -219,7 +219,7 @@ MonoBehaviour:
   playerTransform: {fileID: 1884460710054704505}
   gameController: {fileID: 7532890927027561734, guid: 39dabfc960c4566488688e90604d5a98,
     type: 3}
-  dashDistance: 5
+  maxDashDistance: 5
   dashRate: 0.8
   playerCurrentHealth: 100
 --- !u!114 &1884460710054704507
