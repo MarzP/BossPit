@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class detectPlayer : MonoBehaviour
 {
-
 	//The target player
 	private Transform player;
 	//At what distance will the enemy be able to detect the player?
@@ -18,6 +17,7 @@ public class detectPlayer : MonoBehaviour
 	public float launchForce = 1000f;
 	public AudioSource engineIdle;
 
+	//Variables needed for detecting player and fire shell.
 	private Rigidbody rb;
 	private RaycastHit hit;
 	public float nextActionTime = 0.0f;
@@ -44,6 +44,7 @@ public class detectPlayer : MonoBehaviour
 		//If the distance is smaller than the detectRange
 		if (distance < detectRange)
 		{	
+			//Play tanksound if its not playing
 			if (!engineIdle.isPlaying)
 			{
 				engineIdle.Play();
@@ -51,7 +52,6 @@ public class detectPlayer : MonoBehaviour
 			Vector3 lookAtVector = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
 			//Look at the player
 			transform.LookAt(lookAtVector);
-
 
 			//Debug.DrawRay(transform.position, rayDirection, Color.red);	//Draw test ray
 
@@ -61,7 +61,6 @@ public class detectPlayer : MonoBehaviour
 				//If player is in line of sight
 				if (hit.transform == player)
 				{
-					//Debug.Log("Player in LOS!");
 					//Execute every x secounds while player is in LOS
 					if (nextActionTime > attackSpeed)
 					{
@@ -75,7 +74,6 @@ public class detectPlayer : MonoBehaviour
 					//Debug.Log("Cant see the player!");
 				}
 			}
-
 		}
 		else
 		{
@@ -83,9 +81,9 @@ public class detectPlayer : MonoBehaviour
 		}
 	}
 
+	//Method to spawn a falling bombshell over the players position.
 	private void FireAttack()
 	{
-		Debug.Log("BOOM!");
 		Vector3 target = player.transform.position;
 		target = new Vector3(target.x, target.y + shellSpawnHeight, target.z);
 		Quaternion targetRotation = Quaternion.Euler(90, 0, 0);
