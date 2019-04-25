@@ -27,7 +27,7 @@ public class charController : MonoBehaviour
         forward.y = 0;
         forward = Vector3.Normalize(forward);
         right = Quaternion.Euler(new Vector3(0, 90, 0)) * forward;
-        
+
 
     }
 
@@ -36,47 +36,56 @@ public class charController : MonoBehaviour
     {
         if (Input.GetButton("HorizontalKey") || Input.GetButton("VerticalKey"))
         {
+            // Activate move method when using "w" "a" "s" or "d"
             Move();
         }
         if (Input.GetKeyDown(KeyCode.LeftShift) && Time.time > nextDash)
         {
+            // Check dash cooldown when pressing left shfit
+            // Activate dash method 
             nextDash = Time.time + dashRate;
             Dash();
         }
-       
+
     }
 
     void Move()
     {
+        // finds what directions are being inputted
         Vector3 direction = new Vector3(Input.GetAxis("HorizontalKey"), 0, Input.GetAxis("VerticalKey"));
+        
+        // finds horizonal speed
         Vector3 rightMovement = right * moveSpeed * Time.deltaTime * Input.GetAxis("HorizontalKey");
+        
+        // finds vertical speed
         Vector3 upMovement = forward * moveSpeed * Time.deltaTime * Input.GetAxis("VerticalKey");
 
+        // finds the direction to face
         Vector3 heading = Vector3.Normalize(rightMovement + upMovement);
 
+        // changes players facing direction
         transform.forward = heading;
+
+        // changes player horizontal position 
         transform.position += rightMovement;
+
+        // changes player vertical position
         transform.position += upMovement;
     }
     void Dash()
     {
         float dashDistance = maxDashDistance;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, maxDashDistance)) {
 
-            Debug.Log("Flag");
+        // uses raycast from player position, out from the direction the player is facing, to the distance equal to the player's maximum dash distance
+        if (Physics.Raycast(transform.position, transform.forward, out hit, maxDashDistance))
+        {
+            // if the ray cast hits something, the player's dash distance is reduced
+            // prevents the player from teleporting through walls
             dashDistance = hit.distance;
-
         }
-        
 
+        // teleports the player
         playerTransform.transform.position += playerTransform.transform.forward * dashDistance;
-        Debug.Log("Flag");
-        Debug.Log("dash distance: " + dashDistance);
-        //playerTransform.transform.position = playerTransform.transform.position + (playerTransform.transform.forward * dashDistance);
-        //playerTransform.transform.position += playerTransform.transform.forward * maxDashDistance;
-        //I should probably make the teleporting better to look at on the camera...
-        //it should also raycast so you cant teleport through walls
-        //maybe even a cooldown
     }
     public void TakeDamage(float amount)
     {
