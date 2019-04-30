@@ -11,6 +11,8 @@ public class detectPlayer : MonoBehaviour
 	public float attackSpeed;
 	//the attack object
 	public Rigidbody shell;
+    //sphere attack object (damage)
+    public Rigidbody attackSphere;
 
 	//Players y + shellSpawnHeight = spawnpoint for shell
 	public float shellSpawnHeight = 30f;
@@ -89,4 +91,11 @@ public class detectPlayer : MonoBehaviour
 		Quaternion targetRotation = Quaternion.Euler(90, 0, 0);
 		Rigidbody shellInstance = Instantiate(shell, target, targetRotation) as Rigidbody;
 	}
+
+    // Method to spawn spheres from every direction
+    private void FireSpheres() {
+        Quaternion targetRotation = Quaternion.Euler(90, 0, 0);
+        Rigidbody attackSphereInstance = Instantiate(attackSphere, transform.forward, targetRotation) as Rigidbody;
+
+    }
 }
