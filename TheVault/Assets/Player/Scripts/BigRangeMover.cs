@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShortRangeMover : MonoBehaviour
+public class BigRangeMover : MonoBehaviour
 {
     private Rigidbody rb;
     private GameObject player;
@@ -16,21 +16,27 @@ public class ShortRangeMover : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody>();
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
         rb.velocity = transform.forward * speed;
-        
+
         Destroy(this.gameObject, destroyTime);
-        
+
     }
 
-    void OnCollisionEnter(Collision other) {
+    void OnCollisionEnter(Collision other)
+    {
         if (other.gameObject.tag == "Enemy") {
             other.gameObject.GetComponent<TankHealth>().TakeDamage(damage);
         }
+
+        
     }
 }
+
+
+

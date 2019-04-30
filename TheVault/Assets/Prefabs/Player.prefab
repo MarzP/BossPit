@@ -237,9 +237,11 @@ MonoBehaviour:
   attackHitboxes:
   - {fileID: 1884460709937319613}
   - {fileID: 2041708914255518610, guid: c414f397c45b0ae4ba1700b0375fd7a0, type: 3}
-  - {fileID: 2041708914255518610, guid: c414f397c45b0ae4ba1700b0375fd7a0, type: 3}
+  - {fileID: 7732665565706763748, guid: da707a74a0a1d1f4c95eb082974f094e, type: 3}
   shotSpawn: {fileID: 1884460711806296673}
+  bigShotSpawn: {fileID: 2320159080330428980}
   fireRate: 0.5
+  bigFireRate: 8
   charaController: {fileID: 1884460710054704482}
   speedBack: 0.2
   playerTransform: {fileID: 1884460710054704505}
@@ -518,6 +520,37 @@ Transform:
   - {fileID: 1884460711888862851}
   - {fileID: 1884460710488196027}
   - {fileID: 1884460711806296673}
+  - {fileID: 2320159080330428980}
   m_Father: {fileID: 1884460710054704505}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5734906806962474973
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2320159080330428980}
+  m_Layer: 0
+  m_Name: BigShotSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2320159080330428980
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5734906806962474973}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1884460711906336666}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

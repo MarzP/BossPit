@@ -12,13 +12,16 @@ public class n3kHitBoxTutAttempt01 : MonoBehaviour
 
     public Collider[] attackHitboxes;
     public Transform shotSpawn;
+    public Transform bigShotSpawn;
     public float fireRate;
+    public float bigFireRate;
     public charController charaController;
     public float speedBack;
     public Transform playerTransform;
     public ParticleSystem lightning;
 
     private float nextFire;
+    private float nextBigFire;
 
 
     // Start is called before the first frame update
@@ -30,9 +33,12 @@ public class n3kHitBoxTutAttempt01 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.G) && Time.time > nextBigFire)
         {
-            LaunchAttack(attackHitboxes[0]);
+            Vector3 tempPosition = playerTransform.position;
+            playerTransform.position = tempPosition;
+            nextBigFire = Time.time + bigFireRate;
+            LaunchBigAttack(attackHitboxes[2]);
         }
         if (Input.GetKeyDown("space") && Time.time > nextFire)
         {
@@ -74,8 +80,8 @@ public class n3kHitBoxTutAttempt01 : MonoBehaviour
     private void LaunchShortRanged(Collider col)
     {
         Instantiate(attackHitboxes[1], shotSpawn.position, shotSpawn.rotation);
-        Instantiate(lightning, transform.position, transform.rotation);
-        lightning.transform.parent = this.transform;
+        //Instantiate(lightning, transform.position, transform.rotation);
+        //lightning.transform.parent = this.transform;
         Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hitbox"));
 
         foreach (Collider c in cols)
@@ -106,7 +112,36 @@ public class n3kHitBoxTutAttempt01 : MonoBehaviour
     }
 
     private void LaunchBigAttack(Collider col) {
+        Instantiate(attackHitboxes[2], bigShotSpawn.position, bigShotSpawn.rotation);
+        //Instantiate(lightning, transform.position, transform.rotation);
+        //lightning.transform.parent = this.transform;
+        Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation, LayerMask.GetMask("Hitbox"));
 
+        foreach (Collider c in cols)
+        {
+            if (c.transform.parent.parent == transform)
+            {
+
+                continue;
+
+            }
+
+            float damage = 0;
+
+            switch (c.name)
+            {
+                case "enemy":
+                    damage = 10;
+                    Debug.Log(c.name);
+                    Debug.Log(damage);
+                    break;
+
+                default:
+                    Debug.Log("Unable to identify enemy. Make sure name matches switch case.");
+                    break;
+
+            }
+        }
     }
 }
 
