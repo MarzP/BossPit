@@ -7,6 +7,7 @@ using TMPro;
 
 public class GameController : MonoBehaviour {
     public GameObject enemeyPrefab; // An enemy Prefab
+    public GameObject bossPrefab; // The boss prefab
     public GameObject playerPrefab; //The player prefab
 
     public MazeGenerator mazeGenerator; // Holds a reference to the maze Generator script
@@ -202,7 +203,7 @@ public class GameController : MonoBehaviour {
         spawn.transform.localPosition = new Vector3(center.x, 2.5f, center.y);
 
         //Spawn the actual boss
-        boss = Object.Instantiate(enemeyPrefab, Vector3.zero, Quaternion.identity);
+        boss = Object.Instantiate(bossPrefab, Vector3.zero, Quaternion.identity);
         boss.transform.localScale = new Vector3(2, 2, 2);
         boss.transform.localPosition = spawn.transform.position; //use the empty game object position
         boss.GetComponent<TankHealth>().gameController = this; //Pass a reference to the boss health script
