@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
@@ -53,7 +53,6 @@ public class GameController : MonoBehaviour {
     public float m_StartingHealth = 100f;               // The amount of health the player starts with.
     private float m_CurrentHealth;                      // How much health the player currently has.
 
-	public Camera minimapCamera;
 
     void Awake() {
         currentDiffcultyLevel = DiffcultyLevel.diffcultyLevel;
@@ -168,9 +167,6 @@ public class GameController : MonoBehaviour {
         player = Object.Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
         player.transform.localPosition = spawnSpace.transform.position; //use the empty game object position
         Destroy(spawnSpace); //Get rid of the space now that the player is inplace
-
-		MinimapScript minimap = minimapCamera.GetComponent<MinimapScript>();
-		minimap.player = player.transform;
     }
 
     //function to spawn the number of enemies specified in
