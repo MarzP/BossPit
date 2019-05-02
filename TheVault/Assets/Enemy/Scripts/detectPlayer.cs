@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class detectPlayer : MonoBehaviour
 {
@@ -22,14 +24,33 @@ public class detectPlayer : MonoBehaviour
 	private RaycastHit hit;
 	public float nextActionTime = 0.0f;
 
+	//Variables needed for navMesh movement
+	public List<Vector3> Waypoints;
+	private NavMeshAgent agent;
+	private Vector3 currentWaypoint;
+	private List<Vector2> deadEnds;
+	public MazeGenerator mazeGenerator;
+
+	private void Awake()
+	{
+		deadEnds = mazeGenerator.getDeadEndList();
+		foreach (Vector2 v in deadEnds)
+		{
+			Waypoints.Add(new Vector3(v.x, 2.5f, v.y));
+		}
+	}
+
 	private void Start()
 	{
         player = GameObject.FindWithTag("Player").GetComponent<Transform>();
 		rb = GetComponent<Rigidbody>();
+		agent = GetComponent<NavMeshAgent>();
 
 		//codelines make enemy stand in place when looking at player
 		rb.centerOfMass = Vector3.zero;
 		rb.freezeRotation = true;
+
+		SetNewDestination();
 	}
 
 	void Update()
@@ -78,6 +99,10 @@ public class detectPlayer : MonoBehaviour
 		else
 		{
 			engineIdle.Pause();
+			if ((transform.position - currentWaypoint).magnitude <= 1)
+			{
+				SetNewDestination();
+			}
 		}
 	}
 
@@ -88,5 +113,11 @@ public class detectPlayer : MonoBehaviour
 		target = new Vector3(target.x, target.y + shellSpawnHeight, target.z);
 		Quaternion targetRotation = Quaternion.Euler(90, 0, 0);
 		Rigidbody shellInstance = Instantiate(shell, target, targetRotation) as Rigidbody;
+	}
+
+	void SetNewDestination()
+	{
+		currentWaypoint = Waypoints[UnityEngine.Random.Range(0, Waypoints.Count)];
+		agent.SetDestination(currentWaypoint);
 	}
 }
