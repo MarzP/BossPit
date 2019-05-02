@@ -13,6 +13,8 @@ public class detectPlayer : MonoBehaviour
 	public float attackSpeed;
 	//the attack object
 	public Rigidbody shell;
+    //sphere attack object (damage)
+    public Rigidbody attackSphere;
 
 	//Players y + shellSpawnHeight = spawnpoint for shell
 	public float shellSpawnHeight = 30f;
@@ -115,9 +117,18 @@ public class detectPlayer : MonoBehaviour
 		Rigidbody shellInstance = Instantiate(shell, target, targetRotation) as Rigidbody;
 	}
 
+<<<<<<< HEAD
 	void SetNewDestination()
 	{
 		currentWaypoint = Waypoints[UnityEngine.Random.Range(0, Waypoints.Count)];
 		agent.SetDestination(currentWaypoint);
 	}
+=======
+    // Method to spawn spheres from every direction
+    private void FireSpheres() {
+        Quaternion targetRotation = Quaternion.Euler(90, 0, 0);
+        Rigidbody attackSphereInstance = Instantiate(attackSphere, transform.forward, targetRotation) as Rigidbody;
+
+    }
+>>>>>>> 6965f1744e3360bba36ed354a9e15d722597d1fd
 }
