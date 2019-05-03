@@ -1,9 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.AI;
 
 public class GameController : MonoBehaviour {
     public GameObject enemeyPrefab; // An enemy Prefab
@@ -53,12 +54,19 @@ public class GameController : MonoBehaviour {
     public float m_StartingHealth = 100f;               // The amount of health the player starts with.
     private float m_CurrentHealth;                      // How much health the player currently has.
 
+	public Camera minimapCamera;
+
+	public NavMeshSurface surface;
 
     void Awake() {
         currentDiffcultyLevel = DiffcultyLevel.diffcultyLevel;
         mazeGenerator.GenerateMaze(Random.Range(minSizeX, maxSizeX), Random.Range(minSizeY, maxSizeY)); // Instructs the mazeGenerator to generate a Maze
         mazeGenerator.InstantiateMaze(); //Instructs the mazeGenerator to instantiate that maze within the game world
         deadEnds = mazeGenerator.getDeadEndList(); // Retrieve a list of all deadends within the maze (to be used as spawn positions)
+
+		//Bake navmesh
+		surface.BuildNavMesh();
+
         SpawnPlayer();
         //Disabled all UI Text
         gameOverText.enabled = false;
@@ -133,10 +141,12 @@ public class GameController : MonoBehaviour {
                 Destroy(innerWalls[i].gameObject);
             }
             innerWalls.Clear();
-            //spawn boss
-            SpawnBoss();
+			//Bake navmesh
+			surface.BuildNavMesh();
+			//spawn boss
+			SpawnBoss();
             bossSpawned = true;
-        }
+		}
         if (!gameOver && getPlayerHP() <= 0) {
             RegiesterPlayerDeath();
             Debug.Log("Player Died");
@@ -167,6 +177,9 @@ public class GameController : MonoBehaviour {
         player = Object.Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
         player.transform.localPosition = spawnSpace.transform.position; //use the empty game object position
         Destroy(spawnSpace); //Get rid of the space now that the player is inplace
+
+		MinimapScript minimap = minimapCamera.GetComponent<MinimapScript>();
+		minimap.player = player.transform;
     }
 
     //function to spawn the number of enemies specified in
@@ -200,13 +213,14 @@ public class GameController : MonoBehaviour {
         //Instantiate an empty game object to hold the position for the boss
         GameObject spawn = new GameObject();
         spawn.transform.SetParent(mazeSpawn);
-        spawn.transform.localPosition = new Vector3(center.x, 2.5f, center.y);
+        spawn.transform.localPosition = new Vector3(center.x, 1.5f, center.y);
 
         //Spawn the actual boss
         boss = Object.Instantiate(bossPrefab, Vector3.zero, Quaternion.identity);
         boss.transform.localScale = new Vector3(2, 2, 2);
-        boss.transform.localPosition = spawn.transform.position; //use the empty game object position
-        boss.GetComponent<TankHealth>().gameController = this; //Pass a reference to the boss health script
+        //boss.transform.localPosition = spawn.transform.position; //use the empty game object position
+		boss.GetComponent<NavMeshAgent>().Warp(spawn.transform.position);//use the empty game object position but with navmesh warp
+		boss.GetComponent<TankHealth>().gameController = this; //Pass a reference to the boss health script
         if (currentDiffcultyLevel <= 2) {
             boss.GetComponent<detectPlayer>().attackSpeed = 2.5f - (0.5f * currentDiffcultyLevel);
         } else {
