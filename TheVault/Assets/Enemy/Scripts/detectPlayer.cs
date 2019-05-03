@@ -113,7 +113,14 @@ public class detectPlayer : MonoBehaviour
 		Rigidbody shellInstance = Instantiate(shell, target, targetRotation) as Rigidbody;
 	}
 
-	void SetNewDestination()
+	// Method to spawn spheres from every direction
+	private void FireSpheres()
+	{
+		Quaternion targetRotation = Quaternion.Euler(90, 0, 0);
+		Rigidbody attackSphereInstance = Instantiate(attackSphere, transform.forward, targetRotation) as Rigidbody;
+	}
+
+		void SetNewDestination()
 	{
 		Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * walkRadius;
 
