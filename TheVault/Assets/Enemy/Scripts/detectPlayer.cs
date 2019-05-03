@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -27,20 +28,9 @@ public class detectPlayer : MonoBehaviour
 	public float nextActionTime = 0.0f;
 
 	//Variables needed for navMesh movement
-	public List<Vector3> Waypoints;
 	private NavMeshAgent agent;
-	private Vector3 currentWaypoint;
-	private List<Vector2> deadEnds;
-	public MazeGenerator mazeGenerator;
-
-	private void Awake()
-	{
-		deadEnds = mazeGenerator.getDeadEndList();
-		foreach (Vector2 v in deadEnds)
-		{
-			Waypoints.Add(new Vector3(v.x, 2.5f, v.y));
-		}
-	}
+	public Vector3 currentWaypoint;
+	public float walkRadius = 10f;
 
 	private void Start()
 	{
@@ -51,7 +41,6 @@ public class detectPlayer : MonoBehaviour
 		//codelines make enemy stand in place when looking at player
 		rb.centerOfMass = Vector3.zero;
 		rb.freezeRotation = true;
-
 		SetNewDestination();
 	}
 
@@ -66,7 +55,8 @@ public class detectPlayer : MonoBehaviour
 
 		//If the distance is smaller than the detectRange
 		if (distance < detectRange)
-		{	
+		{
+			agent.isStopped = true;
 			//Play tanksound if its not playing
 			if (!engineIdle.isPlaying)
 			{
@@ -101,9 +91,15 @@ public class detectPlayer : MonoBehaviour
 		else
 		{
 			engineIdle.Pause();
-			if ((transform.position - currentWaypoint).magnitude <= 1)
+			//Vector3 posNoY = new Vector3(transform.position.x, 0f, transform.position.z);
+			
+			if ((transform.position - currentWaypoint).magnitude <= 1f)
 			{
 				SetNewDestination();
+			}
+			else if (agent.isStopped)
+			{
+				agent.isStopped = false;
 			}
 		}
 	}
@@ -119,7 +115,12 @@ public class detectPlayer : MonoBehaviour
 
 	void SetNewDestination()
 	{
-		currentWaypoint = Waypoints[UnityEngine.Random.Range(0, Waypoints.Count)];
+		Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * walkRadius;
+
+		randomDirection += transform.position;
+		NavMeshHit hit;
+		NavMesh.SamplePosition(randomDirection, out hit, walkRadius, 1);
+		currentWaypoint = hit.position;
 		agent.SetDestination(currentWaypoint);
 	}
 }
