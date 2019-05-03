@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3464584784886888092}
   - component: {fileID: 3632107489884170877}
   - component: {fileID: 4260826288530517962}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 08c1439bbf0122c458d01156e802bdae, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

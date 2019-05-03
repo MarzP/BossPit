@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 657c43f0cec459c4aa55d8cebe481b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemeyPrefab: {fileID: 249308947, guid: a416fd8cac1bfc741af9dff49487af12, type: 3}
+  enemeyPrefab: {fileID: 249308947, guid: db1ca2c8e62ca6c4caf8d0f3343b204b, type: 3}
   bossPrefab: {fileID: 249308947, guid: e63d7864c0dfadd4fbb4d9ef4fef1720, type: 3}
   playerPrefab: {fileID: 1884460710054704483, guid: f918157bced4bd64bbafcc39def29fef,
     type: 3}
@@ -64,3 +64,4 @@ MonoBehaviour:
   m_FullHealthColor: {r: 0, g: 1, b: 0, a: 1}
   m_ZeroHealthColor: {r: 1, g: 0, b: 0, a: 1}
   m_StartingHealth: 100
+  minimapCamera: {fileID: 0}
