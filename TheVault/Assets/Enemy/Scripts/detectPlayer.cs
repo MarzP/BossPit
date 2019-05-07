@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class detectPlayer : MonoBehaviour
 {
@@ -27,21 +24,14 @@ public class detectPlayer : MonoBehaviour
 	private RaycastHit hit;
 	public float nextActionTime = 0.0f;
 
-	//Variables needed for navMesh movement
-	private NavMeshAgent agent;
-	public Vector3 currentWaypoint;
-	public float walkRadius = 10f;
-
 	private void Start()
 	{
         player = GameObject.FindWithTag("Player").GetComponent<Transform>();
 		rb = GetComponent<Rigidbody>();
-		agent = GetComponent<NavMeshAgent>();
 
 		//codelines make enemy stand in place when looking at player
 		rb.centerOfMass = Vector3.zero;
 		rb.freezeRotation = true;
-		SetNewDestination();
 	}
 
 	void Update()
@@ -55,8 +45,7 @@ public class detectPlayer : MonoBehaviour
 
 		//If the distance is smaller than the detectRange
 		if (distance < detectRange)
-		{
-			agent.isStopped = true;
+		{	
 			//Play tanksound if its not playing
 			if (!engineIdle.isPlaying)
 			{
@@ -91,16 +80,6 @@ public class detectPlayer : MonoBehaviour
 		else
 		{
 			engineIdle.Pause();
-			//Vector3 posNoY = new Vector3(transform.position.x, 0f, transform.position.z);
-			
-			if ((transform.position - currentWaypoint).magnitude <= 1f)
-			{
-				SetNewDestination();
-			}
-			else if (agent.isStopped)
-			{
-				agent.isStopped = false;
-			}
 		}
 	}
 
@@ -113,21 +92,10 @@ public class detectPlayer : MonoBehaviour
 		Rigidbody shellInstance = Instantiate(shell, target, targetRotation) as Rigidbody;
 	}
 
-	// Method to spawn spheres from every direction
-	private void FireSpheres()
-	{
-		Quaternion targetRotation = Quaternion.Euler(90, 0, 0);
-		Rigidbody attackSphereInstance = Instantiate(attackSphere, transform.forward, targetRotation) as Rigidbody;
-	}
+    //// Method to spawn spheres from every direction
+    //private void FireSpheres() {
+    //    Quaternion targetRotation = Quaternion.Euler(90, 0, 0);
+    //    Rigidbody attackSphereInstance = Instantiate(attackSphere, transform.forward, targetRotation) as Rigidbody;
 
-		void SetNewDestination()
-	{
-		Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * walkRadius;
-
-		randomDirection += transform.position;
-		NavMeshHit hit;
-		NavMesh.SamplePosition(randomDirection, out hit, walkRadius, 1);
-		currentWaypoint = hit.position;
-		agent.SetDestination(currentWaypoint);
-	}
+    //}
 }
