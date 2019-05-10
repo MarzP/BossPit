@@ -6,6 +6,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class n3kHitBoxTutAttempt01 : MonoBehaviour
 {
@@ -22,7 +23,6 @@ public class n3kHitBoxTutAttempt01 : MonoBehaviour
 
     private float nextFire;
     private float nextBigFire;
-
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +46,6 @@ public class n3kHitBoxTutAttempt01 : MonoBehaviour
             playerTransform.position = tempPosition;
             nextFire = Time.time + fireRate;
             LaunchShortRanged(attackHitboxes[1]);
-
         }
 
     }

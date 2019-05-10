@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class charController : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class charController : MonoBehaviour
 
     RaycastHit hit;
 
+    //Cooldown 
+    public Image teleport;
+     bool isCooldownTeleport;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +47,20 @@ public class charController : MonoBehaviour
             // Activate dash method 
             nextDash = Time.time + dashRate;
             Dash();
-        }
+
+    isCooldownTeleport = true;
+       
+    }
+            // Change cooldown image
+            if(isCooldownTeleport)
+            {
+                teleport.fillAmount += 1 / dashRate * Time.deltaTime;
+                if(teleport.fillAmount >= 1)
+                {
+                    teleport.fillAmount = 0;
+                    isCooldownTeleport = false;
+                }
+            }
 
     }
 
