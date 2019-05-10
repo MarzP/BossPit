@@ -9,9 +9,9 @@ public class Cooldowns : MonoBehaviour
     public Image bigAttack;
     public Image basicAttack;
 
-    public float cooldownTeleport = 5;
-    public float cooldownBigAttack = 5 ;
-    public float cooldownBasicAttack = 5;
+    public float cooldownTeleport;
+    public float cooldownBigAttack;
+    public float cooldownBasicAttack;
 
     bool isCooldownTeleport;
     bool isCooldownBigAttack;

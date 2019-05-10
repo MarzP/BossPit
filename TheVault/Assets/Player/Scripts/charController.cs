@@ -21,8 +21,8 @@ public class charController : MonoBehaviour
     RaycastHit hit;
 
     //Cooldown 
-    public Image teleport;
-     bool isCooldownTeleport;
+   // public Image teleport;
+    // bool isCooldownTeleport;
 
     // Start is called before the first frame update
     void Start()
@@ -48,11 +48,11 @@ public class charController : MonoBehaviour
             nextDash = Time.time + dashRate;
             Dash();
 
-    isCooldownTeleport = true;
+    //isCooldownTeleport = true;
        
     }
             // Change cooldown image
-            if(isCooldownTeleport)
+           /*  if(isCooldownTeleport)
             {
                 teleport.fillAmount += 1 / dashRate * Time.deltaTime;
                 if(teleport.fillAmount >= 1)
@@ -60,7 +60,7 @@ public class charController : MonoBehaviour
                     teleport.fillAmount = 0;
                     isCooldownTeleport = false;
                 }
-            }
+            } */
 
     }
 
