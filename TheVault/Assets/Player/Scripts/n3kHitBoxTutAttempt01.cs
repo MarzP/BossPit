@@ -20,7 +20,6 @@ public class n3kHitBoxTutAttempt01 : MonoBehaviour
     public float speedBack;
     public Transform playerTransform;
     public ParticleSystem lightning;
-    public Light attackLight;
 
     private float nextFire;
     private float nextBigFire;
@@ -35,8 +34,7 @@ public class n3kHitBoxTutAttempt01 : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.G) && Time.time > nextBigFire)
-        {
-            attackLight.enabled = !attackLight.enabled;
+        { 
             Vector3 tempPosition = playerTransform.position;
             playerTransform.position = tempPosition;
             nextBigFire = Time.time + bigFireRate;
@@ -102,7 +100,6 @@ public class n3kHitBoxTutAttempt01 : MonoBehaviour
                     damage = 10;
                     Debug.Log(c.name);
                     Debug.Log(damage);
-                    attackLight.enabled = !attackLight.enabled;
                     break;
 
                 default:
@@ -136,7 +133,6 @@ public class n3kHitBoxTutAttempt01 : MonoBehaviour
                     damage = 10;
                     Debug.Log(c.name);
                     Debug.Log(damage);
-                    attackLight.enabled = !attackLight.enabled;
                     break;
 
                 default:
