@@ -864,7 +864,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: 6
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -1438,7 +1438,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: 6
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -2640,7 +2640,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: 6
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -3962,6 +3962,11 @@ PrefabInstance:
       propertyPath: surface
       value: 
       objectReference: {fileID: 1640386813}
+    - target: {fileID: 761607017, guid: ae91a968fe929ef49a78c8cf955584b6, type: 3}
+      propertyPath: bossPrefab
+      value: 
+      objectReference: {fileID: 249308947, guid: 74f4849fd1fb8fb43aac501602cb4457,
+        type: 3}
     - target: {fileID: 761607018, guid: ae91a968fe929ef49a78c8cf955584b6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
