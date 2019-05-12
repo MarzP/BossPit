@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5409530}
   - component: {fileID: 10833074}
   - component: {fileID: 11426614}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: CompleteShell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_ExplosionParticles: {fileID: 198540207889710882}
   m_ExplosionAudio: {fileID: 82110601301053950}
   m_MaxDamage: 100
-  m_ExplosionForce: 400
+  m_ExplosionForce: 200
   m_MaxLifeTime: 10
   m_ExplosionRadius: 5
 --- !u!1 &1291295503164410
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 198540207889710882}
   - component: {fileID: 199184292630279170}
   - component: {fileID: 82110601301053950}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: CompleteShellExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5096,7 +5096,7 @@ GameObject:
   - component: {fileID: 4259067470028500}
   - component: {fileID: 198280443358216586}
   - component: {fileID: 199593061706741932}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Trails
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9830,7 +9830,7 @@ GameObject:
   - component: {fileID: 4610528029879982}
   - component: {fileID: 198491702681178374}
   - component: {fileID: 199277303977862278}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Burst
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14651,7 +14651,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 28a5e79925e3ce04a82856c16a572cbe, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 28a5e79925e3ce04a82856c16a572cbe, type: 3}
       propertyPath: m_LocalPosition.x
