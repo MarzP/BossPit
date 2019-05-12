@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1191,7 +1191,7 @@ MonoBehaviour:
     spaceCount: 5
     wordCount: 6
     linkCount: 0
-    lineCount: 2
+    lineCount: 3
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -3418,7 +3418,7 @@ MonoBehaviour:
     spaceCount: 5
     wordCount: 6
     linkCount: 0
-    lineCount: 2
+    lineCount: 3
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -4887,6 +4887,11 @@ PrefabInstance:
       propertyPath: surface
       value: 
       objectReference: {fileID: 1640386813}
+    - target: {fileID: 761607017, guid: ae91a968fe929ef49a78c8cf955584b6, type: 3}
+      propertyPath: bossPrefab
+      value: 
+      objectReference: {fileID: 249308947, guid: e7f3c6d24c1c21a428c04ecd89489e43,
+        type: 3}
     - target: {fileID: 761607018, guid: ae91a968fe929ef49a78c8cf955584b6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
