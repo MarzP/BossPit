@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 1884460710054704485}
   - component: {fileID: 1884460710054704482}
   - component: {fileID: 1884460710054704507}
-  - component: {fileID: 2300283605108115150}
+  - component: {fileID: 6567938631736152520}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -249,20 +249,19 @@ MonoBehaviour:
   playerTransform: {fileID: 1884460710054704505}
   lightning: {fileID: 9026105365088882857, guid: f8e688cd35c5d5a4e9904408af98b743,
     type: 3}
-  attackLight: {fileID: 2300283605108115150}
---- !u!108 &2300283605108115150
+--- !u!108 &6567938631736152520
 Light:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1884460710054704483}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 9
   m_Type: 2
-  m_Color: {r: 0.7924528, g: 0.77258426, b: 0.078497685, a: 1}
+  m_Color: {r: 0.9150943, g: 0.79313135, b: 0.10791205, a: 1}
   m_Intensity: 1
-  m_Range: 20
+  m_Range: 5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
