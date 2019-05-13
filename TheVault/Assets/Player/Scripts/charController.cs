@@ -20,6 +20,8 @@ public class charController : MonoBehaviour
 
     RaycastHit hit;
 
+    Animator anim;
+
     //Cooldown 
    // public Image teleport;
     // bool isCooldownTeleport;
@@ -31,6 +33,7 @@ public class charController : MonoBehaviour
         forward.y = 0;
         forward = Vector3.Normalize(forward);
         right = Quaternion.Euler(new Vector3(0, 90, 0)) * forward;
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -71,7 +74,8 @@ public class charController : MonoBehaviour
         
         // finds horizonal speed
         Vector3 rightMovement = right * moveSpeed * Time.deltaTime * Input.GetAxis("HorizontalKey");
-        
+        float moveHorizontal = Input.GetAxis("HorizontalKey");
+        anim.SetFloat("PlayerMoveHorizontalSpeed", moveHorizontal);
         // finds vertical speed
         Vector3 upMovement = forward * moveSpeed * Time.deltaTime * Input.GetAxis("VerticalKey");
 
