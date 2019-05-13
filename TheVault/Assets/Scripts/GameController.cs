@@ -58,6 +58,10 @@ public class GameController : MonoBehaviour {
 
 	public NavMeshSurface surface;
 
+    public float score;
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI currentLevel;
+
     void Awake() {
         currentDiffcultyLevel = DiffcultyLevel.diffcultyLevel;
         mazeGenerator.GenerateMaze(Random.Range(minSizeX, maxSizeX), Random.Range(minSizeY, maxSizeY)); // Instructs the mazeGenerator to generate a Maze
@@ -97,7 +101,13 @@ public class GameController : MonoBehaviour {
         tipDuration = 3;
         if(currentDiffcultyLevel > 1) {
             startTips.text = "Level " + currentDiffcultyLevel;
+
+            currentLevel.text = "Current Level: " + (currentDiffcultyLevel+1);
+            scoreText.text = "Score: " + (score + 100 + getPlayerHP());
+            //updateScore();
         }
+        //updateScore();
+        currentLevel.text = "Current Level: " + (currentDiffcultyLevel+1);
     }
 
     // Update is called once per frame
@@ -114,6 +124,7 @@ public class GameController : MonoBehaviour {
         }
         if(levelCleared && delayTimer > levelClearDelay && Input.GetButton("Jump")) {
             DiffcultyLevel.diffcultyLevel = currentDiffcultyLevel + 1;
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         if (gameOver && Input.GetButton("Jump")) {
@@ -272,5 +283,11 @@ public class GameController : MonoBehaviour {
         gameOverText.enabled = true;
         gameOver = true;
     }
+
+    public void updateScore()
+    {
+        scoreText.text = "Score: " + score;
+    }
+
     // End of Game Controller Class
 }
