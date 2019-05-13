@@ -2209,7 +2209,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -575, y: -351.78}
+  m_AnchoredPosition: {x: -571, y: -351.78}
   m_SizeDelta: {x: 27.2, y: 18.99}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &734549088
@@ -6666,12 +6666,6 @@ PrefabInstance:
       objectReference: {fileID: 249308947, guid: e7f3c6d24c1c21a428c04ecd89489e43,
         type: 3}
     - target: {fileID: 761607017, guid: ae91a968fe929ef49a78c8cf955584b6, type: 3}
-<<<<<<< HEAD
-      propertyPath: playerPrefab
-      value: 
-      objectReference: {fileID: 1884460710054704483, guid: 3e4dde789d3ccd2408d0453054ec144f,
-        type: 3}
-=======
       propertyPath: currentLevel
       value: 
       objectReference: {fileID: 1185213278}
@@ -6679,7 +6673,6 @@ PrefabInstance:
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 302954280}
->>>>>>> 7946a0846c04eb47eda4d3d715fd1854a496fee6
     - target: {fileID: 761607018, guid: ae91a968fe929ef49a78c8cf955584b6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
