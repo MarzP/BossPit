@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemeyPrefab: {fileID: 249308947, guid: db1ca2c8e62ca6c4caf8d0f3343b204b, type: 3}
   bossPrefab: {fileID: 249308947, guid: e63d7864c0dfadd4fbb4d9ef4fef1720, type: 3}
-  playerPrefab: {fileID: 1884460710054704483, guid: f918157bced4bd64bbafcc39def29fef,
+  playerPrefab: {fileID: 1884460710054704483, guid: 0375b39265eeef74ab1efed3cf6ce903,
     type: 3}
   mazeGenerator: {fileID: 0}
   mazeSpawn: {fileID: 0}
@@ -66,3 +66,6 @@ MonoBehaviour:
   m_StartingHealth: 100
   minimapCamera: {fileID: 0}
   surface: {fileID: 0}
+  score: 0
+  scoreText: {fileID: 0}
+  currentLevel: {fileID: 0}
