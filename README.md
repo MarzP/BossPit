@@ -11,3 +11,6 @@ https://docs.google.com/document/d/1gHJTH-ubR50NiXjwMEUoB8UnQlqfyII8LZUmjjFyZXU/
 
 Daily Standup log -
 https://docs.google.com/document/d/16k_j4E6GKj6nCYwgW3mcALCTFZCERjp94u5RUmXtbjk/edit
+
+Presentation - 
+https://docs.google.com/presentation/d/1x6zpdAcL7S6ru8ifk7UqqxFruwnY-K6g2di4XqmxJQk/edit#slide=id.p
